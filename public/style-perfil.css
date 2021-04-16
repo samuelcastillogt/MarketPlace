@@ -68,6 +68,26 @@ header{
     margin: 0 auto;
     padding: 20px;
 }
+#publi-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    width: 300px;
+    height: 400px;
+    border: 1px solid white;
+    border-radius: 6px 30px 6px 6px;
+    margin: 10px;
+    background: linear-gradient(to right, rgb(243, 213, 213), white);
+}
+.card-img-top{
+    width: 100%;
+    object-fit: unset;
+    border-radius: 6px 30px 6px 6px;
+}
+.card-body{
+    padding: 20px;
+}
 @media only screen and (max-width: 700px) {
     .menu{
         display: none;
