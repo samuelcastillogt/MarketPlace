@@ -7,9 +7,9 @@
     padding: 0;
 
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     height: 1px;
-}
+} */
 /* tipografia */
 .h2{
     font-size: 1.6em;
@@ -58,7 +58,7 @@
 }
 .carrusel-tarjeta{
     width: 250px;
-    height: 300px;
+    height: 450px;
     display: inline-block;
     border-radius: 20px;
     overflow: hidden;
@@ -90,12 +90,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1em;
+    width: 90%;
+    flex-wrap: wrap;
     
+}
+.title-card{
+    font-size: 1em;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
 }
 @media only screen and (max-width: 700px) {
     .carrusel-tarjeta{
         width: 150px;
         height: 250px;
+    }
+    .title-card{
+      width: 30%;
     }
 }
 
