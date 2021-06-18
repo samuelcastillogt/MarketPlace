@@ -11,7 +11,7 @@
     <script crossorigin='anonymous' src='https://kit.fontawesome.com/bbfd0abfad.js'></script>
     <link rel="stylesheet" href="style-perfil.css">
     
-    <title>Document</title>
+    <title><%= datos.nombre %>: Perfil de Points</title>
 </head>
 <body>
     <header>
@@ -19,30 +19,48 @@
         <%- include('./partials/menu.ejs'); -%>
     </header>
     <section class="hero">
-        <img class="hero-img"src="<%= imagen %>" alt="<%= nombre %>">
-        <h1><%= nombre %></h1>
-        <div id="mapid"></div>
+        <img class="hero-img"src="<%= datos.imagen %>" alt="<%= datos.nombre %>">
+        <h1><%= datos.nombre %></h1>
+        
     </section>
     <section class="descripcion">
-        <p><%= descripcion %></p>
+        <p><%- datos.descripcion %></p>
     </section>
-    <section id="publi-container"></section>
-   <style>
-       .leaflet-container{
-           width: 100%;
-           height: 300px;
-       }
-   </style>
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <section class="main">
+        <section id="publi-container">
+            <% publicacion.map(item =>{ %>
+                <div class="card">
+                    <img src="<%= item.publicacion.imagen %>" class="card-img-top" alt="<%= datos.nombre %>">
+                    <div class="card-body">
+                        <h2 class="title-card"><%= item.publicacion.titulo %></h2>
+                <p class="card-text"><%- item.publicacion.texto %></p>
+                    </div>
+                
+            </div>
+   <% }) %>
+        </section>
+        <section class="sidebar"><div id="mapid"></div></section>
+    </section>
+    <section>
+        <h2>Negocios Relacionados</h2>
+        <div>
+            <% relaciondas.map(item =>{ %>
+                <div class="card">
+                  
+                    <div class="card-body">
+                        <h2 class="title-card"><%= item.datos.nombre %></h2>
+                <p class="card-text"><%- item.datos.decripcion %></p>
+                    </div>
+                
+            </div>
+   <% }) %>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script>
-     var mymap = L.map('mapid').setView([<%= lat %>, <%= lng %>], 16);
+     var mymap = L.map('mapid').setView([<%= datos.lat %>, <%= datos.lng %>], 16);
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1Ijoic2FtdWVsY2FzdGlsbG9ndCIsImEiOiJja2tvbDkxaHAwMHhkMm9tYTA1bWJvdHcxIn0.b7-x19SDtVcorEa07M4ZqQ', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 25,
@@ -51,44 +69,10 @@
       zoomOffset: -1,
       accessToken: 'sk.eyJ1Ijoic2FtdWVsY2FzdGlsbG9ndCIsImEiOiJja2tvbDkxaHAwMHhkMm9tYTA1bWJvdHcxIn0.b7-x19SDtVcorEa07M4ZqQ'
   }).addTo(mymap);
-  var marker = L.marker([<%= lat %>, <%= lng %>]).addTo(mymap);
-  marker.bindPopup(`<b><%= nombre %></b><br><%= categoria %><br>`).openPopup();
+  var marker = L.marker([<%= datos.lat %>, <%= datos.lng %>]).addTo(mymap);
+  marker.bindPopup(`<b><%= datos.nombre %></b><br><%= datos.categoria %><br>`).openPopup();
 var popup = L.popup();
-var firebaseConfig = {
-    apiKey: "AIzaSyBTlIW_1NAeMeSDOdCc4AICtGxoYbaUyuw",
-    authDomain: "directorio-bc73c.firebaseapp.com",
-    databaseURL: "https://directorio-bc73c.firebaseio.com",
-    projectId: "directorio-bc73c",
-    storageBucket: "directorio-bc73c.appspot.com",
-    messagingSenderId: "584037980083",
-    appId: "1:584037980083:web:136190acf46a5337565dc6",
-    measurementId: "G-0MXJNYN7QQ"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  var busicess =db.collection("bisiness");
-  document.addEventListener("DOMContentLoaded", function(event) { 
-    var posts =(callback) => busicess.doc("<%= id %>").collection('publicaciones').onSnapshot(callback);
-        posts((querySnapshot) => {
-  querySnapshot.forEach((doc) => {
-      const publicaciones = document.getElementById("publi-container")
-      const publicacion = doc.data() 
-      publicaciones.innerHTML +=``
-      publicaciones.innerHTML +=`
-        <div class="card">
-        <img class="card-img-top" src="${publicacion.imagen}"/>
-        <div class="card-body">
-        <h2 class="card-title">${publicacion.titulo}</h2>
-        <p class="card-text">${publicacion.texto}</p>
-        </div></div>`
-    })
-        })
-    })
-    $(".menu-buton").click(()=>{
 
-$(".menu-movil").toggle("hidden")
-})
 </script>
 </body>
 </html>
