@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    background-color: linear(#4b6584, white);
+    --azulito: #4b6584;
+}
+body{
+    background-color: var(--azulito);
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+header{
+    color: blanchedalmond;
+    border-bottom: .5px solid gray;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: -1px 7px 8px -1px rgba(0,0,0,0.78);
+    width: 100%;
+}
+.titulo{
+    width: 80%;
+    margin-top: 20px;
+    border-bottom: 1px solid blanchedalmond;
+    
+}
+.error{
+    color: blanchedalmond;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}

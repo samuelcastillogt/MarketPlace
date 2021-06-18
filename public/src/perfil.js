@@ -11,8 +11,4 @@ var marker = L.marker([14.695916170414575, -90.57783901691438]).addTo(mymap);
 marker.bindPopup(`<b>Nombre</b><br>categoria<br>`).openPopup();
 var popup = L.popup();
 </script>
-<script>
-  $(".menu-buton").click(()=>{
-
-      $(".menu-movil").toggle("hidden")
-  })
+ 

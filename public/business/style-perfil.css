@@ -8,7 +8,7 @@
     --azulito: #4b6584;
 }
 body{
-    background-color: var(--azulito);
+    background: linear-gradient(to right, #4b6584 0%, #1C6EA4 50%, #2980b9 100%);
     position: relative;
 }
 header{
@@ -72,6 +72,7 @@ header{
 #publi-container{
     display: flex;
     flex-wrap: wrap;
+    width: 60%;
 }
 .card{
     width: 300px;
@@ -88,6 +89,24 @@ header{
 }
 .card-body{
     padding: 20px;
+}
+.leaflet-container{
+    width: 60%;
+    height: 300px;
+}
+.main{
+    display: flex;
+}
+.sidebar{
+    margin-left: 0;
+    width: 30%;
+    float: left;
+    border: 2px solid white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 @media only screen and (max-width: 700px) {
     .menu{

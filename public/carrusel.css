@@ -1,0 +1,63 @@
+.container-carrusel{
+    width: 90%;
+    white-space: nowrap;
+    /* margin: 20px 0px; */
+    padding-bottom: 10px; 
+   
+    margin: 0 auto;
+    justify-content: center;
+
+    display: flex;
+    margin: 0 auto;
+}
+.carrusel{
+    /* display: inline-flex; */
+    width: 90%;
+    overflow: scroll;
+    padding: 30px;
+    position: relative;
+    background: white;
+}
+.carrusel-tarjeta{
+    width: 250px;
+    height: 300px;
+    display: inline-block;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--azulito);
+    box-shadow: 2px 3px  5px rgba(0,0,0,0.84);
+    background: linear-gradient(to right, #FAFBFF 0%, #FFFCFA 50%, #E6E6E6 100%);
+    cursor: pointer;
+    transition: 450ms all;
+    transform-origin: center left;
+    margin: 15px;
+}
+.carrusel-tarjeta:hover ~ .carrusel-tarjeta {
+    transform: translate3d(100px, 0, 0);
+}
+.container-carrusel:hover .carrusel-tarjeta {
+    opacity: 0.3;
+  }
+  .container-carrusel:hover .carrusel-tarjeta:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    
+  }
+  .carrusel-tarjeta:hover .btn-link {
+    transition: 2s;
+    display: block;
+  }
+.carrusel-imagen{
+    width: 100%;
+    height: 200px;
+}
+.carrusel-texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    width: 50%;
+    flex-wrap: wrap;
+    
+}
